@@ -15,7 +15,7 @@ class AnimeUltime:
         info = link.extract_info()
         if link.type == "episode":
             return {
-                info["title"] : info["links"]["stream-hq"]
+                info["title"][:-16] : info["links"]["stream-hq"]
             }
         if link.type == "serie":
             serie_episodes = {}
@@ -23,5 +23,5 @@ class AnimeUltime:
                 tmp = AnimeUltimeLink(value["link"])
                 if tmp.is_valid():
                     tmp_info = tmp.extract_info()
-                    serie_episodes[tmp_info["title"]] = tmp_info["links"]["stream-hq"]
+                    serie_episodes[tmp_info["title"][:-16]] = tmp_info["links"]["stream-hq"]
             return serie_episodes
